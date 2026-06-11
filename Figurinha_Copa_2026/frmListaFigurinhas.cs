@@ -66,14 +66,11 @@ namespace Figurinha_Copa_2026
             //  return;
             //}
             flpFigu.Controls.Clear();
-
-            foreach(var figu in frmListaFigurinhas.AlbumGeral)
-            {
-                Filtrar();
-            }
-            
-            
+            Filtrar();
         }
+            
+            
+        
 
 
         void paginaCompleta(System.Drawing.Image imagem, string nome, string raridade, Figurinha objetoFigurinha)
@@ -106,7 +103,7 @@ namespace Figurinha_Copa_2026
             btnDesejado.FlatAppearance.BorderColor = Color.DimGray;
             btnDesejado.BackColor = Color.LightGreen;
             //btnDesejado.Location = new Point(55, 74);
-            btnDesejado.Location = new Point(Top, Left);
+            btnDesejado.Location = new Point(10, 30);
             btnDesejado.Size = new Size(27, 26);
             btnDesejado.Cursor = Cursors.Hand;
             btnDesejado.BackColor = objetoFigurinha.Status == "Desejada" ? System.Drawing.Color.LightCoral : System.Drawing.Color.White;
@@ -118,7 +115,7 @@ namespace Figurinha_Copa_2026
             btnObtido.FlatAppearance.BorderSize = 1;
             btnObtido.FlatAppearance.BorderColor = Color.DimGray;
             btnObtido.BackColor = Color.LightGreen;
-            btnObtido.Location = new Point(Bottom, Left);
+            btnObtido.Location = new Point(10, 95);
             btnObtido.Size = new Size(27, 26);
             btnObtido.Cursor = Cursors.Hand;
             btnObtido.BackColor = objetoFigurinha.Status == "Obtida" ? System.Drawing.Color.LightGreen : System.Drawing.Color.White;
@@ -131,7 +128,7 @@ namespace Figurinha_Copa_2026
             btnVer.FlatStyle = FlatStyle.Flat;
             btnVer.FlatAppearance.BorderSize = 1;
             btnVer.BackColor = System.Drawing.Color.LightCyan;
-            btnVer.Location = new Point(Top, Right );
+            btnVer.Location = new Point(30, 100 );
             btnVer.Size = new Size(27, 26);
             btnVer.Cursor = Cursors.Hand;
             btnVer.Tag = objetoFigurinha;
@@ -143,15 +140,15 @@ namespace Figurinha_Copa_2026
             btnExcluir.FlatStyle = FlatStyle.Flat;
             btnExcluir.FlatAppearance.BorderSize = 1;
             btnExcluir.BackColor = System.Drawing.Color.LightGray;
-            btnExcluir.Location = new Point(Bottom, Right);
+            btnExcluir.Location = new Point(20, 100);
             btnExcluir.Size = new Size(27, 26);
             btnExcluir.Cursor = Cursors.Hand;
             btnExcluir.Tag = objetoFigurinha;
             btnExcluir.Click += btnExcluir_Click;
 
 
-            btnExcluir.Location = new System.Drawing.Point(Bottom, Left);
-            btnVer.Location = new System.Drawing.Point(Top, Right);
+            btnExcluir.Location = new System.Drawing.Point(20, 100);
+            btnVer.Location = new System.Drawing.Point( 30, 100);
             btnDesejado.Location = new System.Drawing.Point(10, 30);
             btnObtido.Location = new System.Drawing.Point(10, 95);
 
@@ -215,7 +212,7 @@ namespace Figurinha_Copa_2026
 
                 if(cor && texto && status)
                 {
-                    paginaCompleta(cards.Imagem, cards.Nome, cards.Raridade, cards );
+                    paginaCompleta(cards.Imagem, cards.Nome, cards.Raridade, cards);
                 }
             }
 

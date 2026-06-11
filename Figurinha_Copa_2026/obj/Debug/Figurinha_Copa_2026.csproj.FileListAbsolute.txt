@@ -12,3 +12,17 @@ C:\Users\rodri\Desktop\ExercícioLucas\Figurinha_Copa_2026\obj\Debug\Figurinha_C
 C:\Users\rodri\Desktop\ExercícioLucas\Figurinha_Copa_2026\obj\Debug\Figurinha_Copa_2026.frmCadastroFigurinhas.resources
 C:\Users\rodri\Desktop\ExercícioLucas\Figurinha_Copa_2026\obj\Debug\Figurinha_Copa_2026.frmListaFigurinhas.resources
 C:\Users\rodri\Desktop\ExercícioLucas\Figurinha_Copa_2026\obj\Debug\Figurinha_Copa_2026.frmMimFigu.resources
+C:\Users\rodri\Source\Repos\Figurinha_da_Copa_2026\Figurinha_Copa_2026\bin\Debug\Figurinha_Copa_2026.exe.config
+C:\Users\rodri\Source\Repos\Figurinha_da_Copa_2026\Figurinha_Copa_2026\bin\Debug\Figurinha_Copa_2026.exe
+C:\Users\rodri\Source\Repos\Figurinha_da_Copa_2026\Figurinha_Copa_2026\bin\Debug\Figurinha_Copa_2026.pdb
+C:\Users\rodri\Source\Repos\Figurinha_da_Copa_2026\Figurinha_Copa_2026\obj\Debug\Figurinha_Copa_2026.csproj.AssemblyReference.cache
+C:\Users\rodri\Source\Repos\Figurinha_da_Copa_2026\Figurinha_Copa_2026\obj\Debug\Figurinha_Copa_2026.exe.config
+C:\Users\rodri\Source\Repos\Figurinha_da_Copa_2026\Figurinha_Copa_2026\obj\Debug\Figurinha_Copa_2026.Form1.resources
+C:\Users\rodri\Source\Repos\Figurinha_da_Copa_2026\Figurinha_Copa_2026\obj\Debug\Figurinha_Copa_2026.frmCadastroFigurinhas.resources
+C:\Users\rodri\Source\Repos\Figurinha_da_Copa_2026\Figurinha_Copa_2026\obj\Debug\Figurinha_Copa_2026.frmListaFigurinhas.resources
+C:\Users\rodri\Source\Repos\Figurinha_da_Copa_2026\Figurinha_Copa_2026\obj\Debug\Figurinha_Copa_2026.frmMimFigu.resources
+C:\Users\rodri\Source\Repos\Figurinha_da_Copa_2026\Figurinha_Copa_2026\obj\Debug\Figurinha_Copa_2026.Properties.Resources.resources
+C:\Users\rodri\Source\Repos\Figurinha_da_Copa_2026\Figurinha_Copa_2026\obj\Debug\Figurinha_Copa_2026.csproj.GenerateResource.cache
+C:\Users\rodri\Source\Repos\Figurinha_da_Copa_2026\Figurinha_Copa_2026\obj\Debug\Figurinha_Copa_2026.csproj.CoreCompileInputs.cache
+C:\Users\rodri\Source\Repos\Figurinha_da_Copa_2026\Figurinha_Copa_2026\obj\Debug\Figurinha_Copa_2026.exe
+C:\Users\rodri\Source\Repos\Figurinha_da_Copa_2026\Figurinha_Copa_2026\obj\Debug\Figurinha_Copa_2026.pdb

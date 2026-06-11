@@ -174,6 +174,16 @@ namespace Figurinha_Copa_2026
 
         void StatusRB()
         {
+            if(txtNomeFigurinha.Text == "")
+            { MessageBox.Show("Preencha o campo do Nome!");
+                return;
+            }
+            if(txtSelecao.Text == "")
+            {
+                MessageBox.Show("Preencha o campo da Seleção!");
+                return;
+            }
+
             if (picFigurinha.Image == null)
             {
                 MessageBox.Show("Selecione uma imagem.");
@@ -275,7 +285,11 @@ namespace Figurinha_Copa_2026
                 //carrega a imagem sem trava-la
                 using (var fs = new FileStream(destinoFinal, FileMode.Open, FileAccess.Read))
                 {
-                    picFigurinha.Image = System.Drawing.Image.FromStream(fs);
+                    using (var imgTemp = System.Drawing.Image.FromStream(fs))
+                    {
+                        // Clona a imagem para que ela não dependa do FileStream aberto
+                        picFigurinha.Image = new Bitmap(imgTemp);
+                    }
                 }
             }
             else
@@ -291,29 +305,39 @@ namespace Figurinha_Copa_2026
         {
             salvar();
             // Verifique se o jogador já existe na lista global antes de dar o .Add()
-          var jogadorExistente = frmListaFigurinhas.AlbumGeral.FirstOrDefault(f => f.Nome == txtNomeFigurinha.Text);
+            var jogadorExistente = frmListaFigurinhas.AlbumGeral.FirstOrDefault(f => f.Nome == txtNomeFigurinha.Text);
+
+            string raridade = rbComum.Checked ? "Comum" : (rbRara.Checked ? "Rara" : "Lendaria");
+            string status = rbObtida.Checked ? "Obtida" : "Desejada";
 
             if (jogadorExistente != null)
             {
-                // Atualiza o que já existe
-                jogadorExistente.Raridade = rbComum.Checked ? "Comum" : (rbRara.Checked ? "Rara" : "Lendária");
-                jogadorExistente.Status = rbObtida.Checked ? "Obtida" : "Desejada";
+                jogadorExistente.Raridade = raridade;
+                jogadorExistente.Status = status;
                 jogadorExistente.Imagem = picFigurinha.Image;
                 MessageBox.Show("Cadastro atualizado com sucesso!");
             }
             else
             {
-                // Se não existia, cria um novo (seu código antigo)
-              //  Figurinha nova = new Figurinha(imagem, nome, raridade, status);
-                //frmListaFigurinhas.AlbumGeral.Add(nova);
+                // Cria e adiciona a nova figurinha à lista global
+                var nova = new Figurinha
+                {
+                    Nome = txtNomeFigurinha.Text,
+                    Imagem = picFigurinha.Image,
+                    Raridade = raridade,
+                    Status = status
+                };
 
+                frmListaFigurinhas.AlbumGeral.Add(nova);
+
+                MessageBox.Show("Figurinha adicionada à lista com sucesso!");
 
                 txtNomeFigurinha.Clear();
                 txtSelecao.Clear();
                 txtDiretorio.Clear();
             }
 
-     }
+        }
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
@@ -323,8 +347,84 @@ namespace Figurinha_Copa_2026
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-           
-            StatusRB();
+            // Validações básicas
+            if (string.IsNullOrWhiteSpace(txtNomeFigurinha.Text))
+            {
+                MsgAtencao("Preencha o campo do Nome!");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtSelecao.Text))
+            {
+                MsgAtencao("Preencha o campo da Seleção!");
+                return;
+            }
+
+            if (picFigurinha.Image == null)
+            {
+                MsgAtencao("Selecione uma imagem.");
+                return;
+            }
+
+            string raridade = rbComum.Checked ? "Comum" :
+                              rbRara.Checked ? "Rara" :
+                              rbLendaria.Checked ? "Lendaria" : "";
+
+            if (string.IsNullOrEmpty(raridade))
+            {
+                MsgAtencao("Selecione a raridade.");
+                return;
+            }
+
+            string status = rbDesejada.Checked ? "Desejada" :
+                            rbObtida.Checked ? "Obtida" : "";
+
+            if (string.IsNullOrEmpty(status))
+            {
+                MsgAtencao("Selecione o status.");
+                return;
+            }
+
+            // Verifica existência e atualiza ou cria nova figurinha (clonando a imagem)
+            var jogadorExistente = frmListaFigurinhas.AlbumGeral
+                .FirstOrDefault(f => f.Nome.Equals(txtNomeFigurinha.Text, StringComparison.OrdinalIgnoreCase));
+
+            if (jogadorExistente != null)
+            {
+                jogadorExistente.Raridade = raridade;
+                jogadorExistente.Status = status;
+                jogadorExistente.Imagem = new Bitmap(picFigurinha.Image); // clona
+                MsgInfo("Cadastro atualizado com sucesso!");
+            }
+            else
+            {
+                var nova = new Figurinha
+                {
+                    Nome = txtNomeFigurinha.Text,
+                    Imagem = new Bitmap(picFigurinha.Image), // clona para evitar dependência do stream
+                    Raridade = raridade,
+                    Status = status
+                };
+
+                frmListaFigurinhas.AlbumGeral.Add(nova);
+                MsgInfo("Figurinha cadastrada com sucesso!");
+            }
+
+            // Abre a lista e, se for obtida, abre a tela pessoal
+            var form2 = new frmListaFigurinhas();
+            form2.Show();
+
+            if (status == "Obtida")
+            {
+                var form3 = new frmMimFigu();
+                form3.Show();
+            }
+
+            // Limpa a tela para novo cadastro
+            txtNomeFigurinha.Clear();
+            txtSelecao.Clear();
+            txtDiretorio.Clear();
+            picFigurinha.Image = null;
         }
     }
 }

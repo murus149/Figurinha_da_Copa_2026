@@ -33,19 +33,19 @@
             this.inícioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.figurinhaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.flpFigu = new System.Windows.Forms.FlowLayoutPanel();
+            this.clienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listaDeFigurinhasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.minhaListaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flpFigu = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbComum = new System.Windows.Forms.RadioButton();
-            this.rbRara = new System.Windows.Forms.RadioButton();
-            this.rbLendaria = new System.Windows.Forms.RadioButton();
+            this.rbObtida = new System.Windows.Forms.RadioButton();
+            this.rbDesejada = new System.Windows.Forms.RadioButton();
             this.rbTodas = new System.Windows.Forms.RadioButton();
+            this.rbLendaria = new System.Windows.Forms.RadioButton();
+            this.rbRara = new System.Windows.Forms.RadioButton();
+            this.rbComum = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPesquisa = new System.Windows.Forms.TextBox();
-            this.rbDesejada = new System.Windows.Forms.RadioButton();
-            this.rbObtida = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -82,9 +82,30 @@
             // figurinhaToolStripMenuItem
             // 
             this.figurinhaToolStripMenuItem.Name = "figurinhaToolStripMenuItem";
-            this.figurinhaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.figurinhaToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.figurinhaToolStripMenuItem.Text = "Figurinha";
             this.figurinhaToolStripMenuItem.Click += new System.EventHandler(this.figurinhaToolStripMenuItem_Click);
+            // 
+            // clienteToolStripMenuItem
+            // 
+            this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.clienteToolStripMenuItem.Text = "Cliente";
+            // 
+            // listaDeFigurinhasToolStripMenuItem
+            // 
+            this.listaDeFigurinhasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.minhaListaToolStripMenuItem});
+            this.listaDeFigurinhasToolStripMenuItem.Name = "listaDeFigurinhasToolStripMenuItem";
+            this.listaDeFigurinhasToolStripMenuItem.Size = new System.Drawing.Size(117, 20);
+            this.listaDeFigurinhasToolStripMenuItem.Text = "Lista de Figurinhas";
+            // 
+            // minhaListaToolStripMenuItem
+            // 
+            this.minhaListaToolStripMenuItem.Name = "minhaListaToolStripMenuItem";
+            this.minhaListaToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.minhaListaToolStripMenuItem.Text = "Minha Lista";
+            this.minhaListaToolStripMenuItem.Click += new System.EventHandler(this.minhaListaToolStripMenuItem_Click);
             // 
             // flpFigu
             // 
@@ -98,27 +119,6 @@
             this.flpFigu.Name = "flpFigu";
             this.flpFigu.Size = new System.Drawing.Size(800, 268);
             this.flpFigu.TabIndex = 1;
-            // 
-            // listaDeFigurinhasToolStripMenuItem
-            // 
-            this.listaDeFigurinhasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.minhaListaToolStripMenuItem});
-            this.listaDeFigurinhasToolStripMenuItem.Name = "listaDeFigurinhasToolStripMenuItem";
-            this.listaDeFigurinhasToolStripMenuItem.Size = new System.Drawing.Size(117, 20);
-            this.listaDeFigurinhasToolStripMenuItem.Text = "Lista de Figurinhas";
-            // 
-            // minhaListaToolStripMenuItem
-            // 
-            this.minhaListaToolStripMenuItem.Name = "minhaListaToolStripMenuItem";
-            this.minhaListaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.minhaListaToolStripMenuItem.Text = "Minha Lista";
-            this.minhaListaToolStripMenuItem.Click += new System.EventHandler(this.minhaListaToolStripMenuItem_Click);
-            // 
-            // clienteToolStripMenuItem
-            // 
-            this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.clienteToolStripMenuItem.Text = "Cliente";
             // 
             // groupBox1
             // 
@@ -138,38 +138,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros:";
             // 
-            // rbComum
+            // rbObtida
             // 
-            this.rbComum.AutoSize = true;
-            this.rbComum.Location = new System.Drawing.Point(6, 13);
-            this.rbComum.Name = "rbComum";
-            this.rbComum.Size = new System.Drawing.Size(68, 19);
-            this.rbComum.TabIndex = 0;
-            this.rbComum.Text = "Comum";
-            this.rbComum.UseVisualStyleBackColor = true;
-            this.rbComum.CheckedChanged += new System.EventHandler(this.rbComum_CheckedChanged);
+            this.rbObtida.AutoSize = true;
+            this.rbObtida.Location = new System.Drawing.Point(199, 36);
+            this.rbObtida.Name = "rbObtida";
+            this.rbObtida.Size = new System.Drawing.Size(67, 19);
+            this.rbObtida.TabIndex = 5;
+            this.rbObtida.Text = "Obtidas";
+            this.rbObtida.UseVisualStyleBackColor = true;
+            this.rbObtida.CheckedChanged += new System.EventHandler(this.rbObtida_CheckedChanged);
             // 
-            // rbRara
+            // rbDesejada
             // 
-            this.rbRara.AutoSize = true;
-            this.rbRara.Location = new System.Drawing.Point(6, 38);
-            this.rbRara.Name = "rbRara";
-            this.rbRara.Size = new System.Drawing.Size(50, 19);
-            this.rbRara.TabIndex = 1;
-            this.rbRara.Text = "Rara";
-            this.rbRara.UseVisualStyleBackColor = true;
-            this.rbRara.CheckedChanged += new System.EventHandler(this.rbRara_CheckedChanged);
-            // 
-            // rbLendaria
-            // 
-            this.rbLendaria.AutoSize = true;
-            this.rbLendaria.Location = new System.Drawing.Point(101, 13);
-            this.rbLendaria.Name = "rbLendaria";
-            this.rbLendaria.Size = new System.Drawing.Size(72, 19);
-            this.rbLendaria.TabIndex = 2;
-            this.rbLendaria.Text = "Lendaria";
-            this.rbLendaria.UseVisualStyleBackColor = true;
-            this.rbLendaria.CheckedChanged += new System.EventHandler(this.rbLendaria_CheckedChanged);
+            this.rbDesejada.AutoSize = true;
+            this.rbDesejada.Location = new System.Drawing.Point(199, 13);
+            this.rbDesejada.Name = "rbDesejada";
+            this.rbDesejada.Size = new System.Drawing.Size(80, 19);
+            this.rbDesejada.TabIndex = 4;
+            this.rbDesejada.Text = "Desejadas";
+            this.rbDesejada.UseVisualStyleBackColor = true;
+            this.rbDesejada.CheckedChanged += new System.EventHandler(this.rbDesejada_CheckedChanged);
             // 
             // rbTodas
             // 
@@ -183,6 +172,39 @@
             this.rbTodas.Text = "Todas";
             this.rbTodas.UseVisualStyleBackColor = true;
             this.rbTodas.CheckedChanged += new System.EventHandler(this.rbTodas_CheckedChanged);
+            // 
+            // rbLendaria
+            // 
+            this.rbLendaria.AutoSize = true;
+            this.rbLendaria.Location = new System.Drawing.Point(101, 13);
+            this.rbLendaria.Name = "rbLendaria";
+            this.rbLendaria.Size = new System.Drawing.Size(72, 19);
+            this.rbLendaria.TabIndex = 2;
+            this.rbLendaria.Text = "Lendaria";
+            this.rbLendaria.UseVisualStyleBackColor = true;
+            this.rbLendaria.CheckedChanged += new System.EventHandler(this.rbLendaria_CheckedChanged);
+            // 
+            // rbRara
+            // 
+            this.rbRara.AutoSize = true;
+            this.rbRara.Location = new System.Drawing.Point(6, 38);
+            this.rbRara.Name = "rbRara";
+            this.rbRara.Size = new System.Drawing.Size(50, 19);
+            this.rbRara.TabIndex = 1;
+            this.rbRara.Text = "Rara";
+            this.rbRara.UseVisualStyleBackColor = true;
+            this.rbRara.CheckedChanged += new System.EventHandler(this.rbRara_CheckedChanged);
+            // 
+            // rbComum
+            // 
+            this.rbComum.AutoSize = true;
+            this.rbComum.Location = new System.Drawing.Point(6, 13);
+            this.rbComum.Name = "rbComum";
+            this.rbComum.Size = new System.Drawing.Size(68, 19);
+            this.rbComum.TabIndex = 0;
+            this.rbComum.Text = "Comum";
+            this.rbComum.UseVisualStyleBackColor = true;
+            this.rbComum.CheckedChanged += new System.EventHandler(this.rbComum_CheckedChanged);
             // 
             // label1
             // 
@@ -203,28 +225,6 @@
             this.txtPesquisa.Size = new System.Drawing.Size(185, 20);
             this.txtPesquisa.TabIndex = 4;
             this.txtPesquisa.TextChanged += new System.EventHandler(this.txtPesquisa_TextChanged);
-            // 
-            // rbDesejada
-            // 
-            this.rbDesejada.AutoSize = true;
-            this.rbDesejada.Location = new System.Drawing.Point(199, 13);
-            this.rbDesejada.Name = "rbDesejada";
-            this.rbDesejada.Size = new System.Drawing.Size(80, 19);
-            this.rbDesejada.TabIndex = 4;
-            this.rbDesejada.Text = "Desejadas";
-            this.rbDesejada.UseVisualStyleBackColor = true;
-            this.rbDesejada.CheckedChanged += new System.EventHandler(this.rbDesejada_CheckedChanged);
-            // 
-            // rbObtida
-            // 
-            this.rbObtida.AutoSize = true;
-            this.rbObtida.Location = new System.Drawing.Point(199, 36);
-            this.rbObtida.Name = "rbObtida";
-            this.rbObtida.Size = new System.Drawing.Size(67, 19);
-            this.rbObtida.TabIndex = 5;
-            this.rbObtida.Text = "Obtidas";
-            this.rbObtida.UseVisualStyleBackColor = true;
-            this.rbObtida.CheckedChanged += new System.EventHandler(this.rbObtida_CheckedChanged);
             // 
             // frmListaFigurinhas
             // 
