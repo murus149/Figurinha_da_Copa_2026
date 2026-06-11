@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMimFigu));
             this.flpMinhaFigu = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.iToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,14 +83,14 @@
             // figurinhasToolStripMenuItem
             // 
             this.figurinhasToolStripMenuItem.Name = "figurinhasToolStripMenuItem";
-            this.figurinhasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.figurinhasToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.figurinhasToolStripMenuItem.Text = "Figurinhas";
             this.figurinhasToolStripMenuItem.Click += new System.EventHandler(this.figurinhasToolStripMenuItem_Click);
             // 
             // clienteToolStripMenuItem
             // 
             this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.clienteToolStripMenuItem.Text = "Cliente";
             // 
             // listaDeFigurinhasToolStripMenuItem
@@ -103,7 +104,7 @@
             // listaDaLojaToolStripMenuItem
             // 
             this.listaDaLojaToolStripMenuItem.Name = "listaDaLojaToolStripMenuItem";
-            this.listaDaLojaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listaDaLojaToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.listaDaLojaToolStripMenuItem.Text = "Lista da Loja";
             this.listaDaLojaToolStripMenuItem.Click += new System.EventHandler(this.listaDaLojaToolStripMenuItem_Click);
             // 
@@ -116,6 +117,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.flpMinhaFigu);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMimFigu";
             this.Text = "frmMimFigu";

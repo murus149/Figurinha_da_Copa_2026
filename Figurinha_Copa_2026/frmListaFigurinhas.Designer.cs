@@ -219,10 +219,11 @@
             // 
             // txtPesquisa
             // 
-            this.txtPesquisa.ForeColor = System.Drawing.Color.LightGray;
+            this.txtPesquisa.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPesquisa.ForeColor = System.Drawing.Color.Black;
             this.txtPesquisa.Location = new System.Drawing.Point(12, 47);
             this.txtPesquisa.Name = "txtPesquisa";
-            this.txtPesquisa.Size = new System.Drawing.Size(185, 20);
+            this.txtPesquisa.Size = new System.Drawing.Size(185, 22);
             this.txtPesquisa.TabIndex = 4;
             this.txtPesquisa.TextChanged += new System.EventHandler(this.txtPesquisa_TextChanged);
             // 

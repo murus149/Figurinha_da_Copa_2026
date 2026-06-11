@@ -23,6 +23,14 @@ namespace Figurinha_Copa_2026
         public frmListaFigurinhas()
         {
             InitializeComponent();
+            // Garantias mínimas caso Designer não tenha ajustado alguma propriedade visual
+            if (flpFigu != null)
+            {
+                flpFigu.AutoScroll = true;
+                flpFigu.WrapContents = true;
+                flpFigu.FlowDirection = FlowDirection.LeftToRight;
+            }
+
             this.Shown += frmListaFigurinhas_Shown;
           
         }
@@ -65,7 +73,8 @@ namespace Figurinha_Copa_2026
             //   MessageBox.Show("uuuullll");
             //  return;
             //}
-            flpFigu.Controls.Clear();
+            DiagnosticoAlbum();
+            LimparFlow();
             Filtrar();
         }
             
@@ -94,8 +103,10 @@ namespace Figurinha_Copa_2026
             picFiguDesti.Size = new Size(100, 100);
             picFiguDesti.Location = new Point(10, 20);
             picFiguDesti.SizeMode = PictureBoxSizeMode.StretchImage;
-            picFiguDesti.Image = imagem;
+            picFiguDesti.Image = imagem != null ? new Bitmap(imagem) : SystemIcons.Warning.ToBitmap();
+            picFiguDesti.Tag = objetoFigurinha;
 
+            //Botões
             Button btnDesejado = new Button();
             btnDesejado.Text = "♥";
             btnDesejado.FlatStyle = FlatStyle.Flat;
@@ -146,12 +157,13 @@ namespace Figurinha_Copa_2026
             btnExcluir.Tag = objetoFigurinha;
             btnExcluir.Click += btnExcluir_Click;
 
-
+            //posição dos botões
             btnExcluir.Location = new System.Drawing.Point(20, 100);
             btnVer.Location = new System.Drawing.Point( 30, 100);
             btnDesejado.Location = new System.Drawing.Point(10, 30);
             btnObtido.Location = new System.Drawing.Point(10, 95);
 
+            //controles
             pianel.Controls.Add(lbl);
             pianel.Controls.Add(btnDesejado);
             pianel.Controls.Add(btnObtido);
@@ -159,19 +171,21 @@ namespace Figurinha_Copa_2026
             pianel.Controls.Add(btnExcluir);
             pianel.Controls.Add(picFiguDesti);
 
-            picFiguDesti.BringToFront();
+            picFiguDesti.SendToBack();
             btnDesejado.BringToFront();
             btnObtido.BringToFront();
             btnExcluir.BringToFront();
             btnVer.BringToFront();
             
-            flpFigu.Controls.Add(pianel);
+            if(flpFigu != null)
+               flpFigu.Controls.Add(pianel);
+
 
         }
 
         void Filtrar()
         {
-            flpFigu.Controls.Clear();
+            LimparFlow();
 
             string pesquisa = txtPesquisa.Text.ToLower().Trim();
 
@@ -196,21 +210,30 @@ namespace Figurinha_Copa_2026
                     cor = true;
                 }
 
-                bool status = false;
+                //  bool status = false;
                 //if (rbStatusTodas.Checked)
-                    //status = true;
-                 if (rbObtida.Checked && cards.Status == "Obtida")
-                    status = true;
-                else if (rbDesejada.Checked && cards.Status == "Desejada")
-                    status = true;
+                //status = true;
+                //  if (rbObtida.Checked && cards.Status == "Obtida")
+                //   status = true;
+                //  else if (rbDesejada.Checked && cards.Status == "Desejada")
+                //     status = true;
 
                 //checa se o nome bate com o registrado, agora
                 //se estiver vazio ele mostra todos os nomes
-                bool texto = string.IsNullOrEmpty(pesquisa) ||
-                    cards.Nome.ToLower().Contains(pesquisa);
+                //  bool texto = string.IsNullOrEmpty(pesquisa) ||
+                //     cards.Nome.ToLower().Contains(pesquisa);
+
+                //  bool texto = string.IsNullOrEmpty(pesquisa) || (cards.Nome ?? "").ToLower().Contains(pesquisa);
+
+                // Status: se nenhum status marcado, mostramos todos
+                bool status = true;
+                if (rbObtida != null && rbObtida.Checked) status = cards.Status == "Obtida";
+                else if (rbDesejada != null && rbDesejada.Checked) status = cards.Status == "Desejada";
+
+                bool texto = string.IsNullOrEmpty(pesquisa) || (cards.Nome ?? "").ToLower().Contains(pesquisa);
 
 
-                if(cor && texto && status)
+                if (cor && texto && status)
                 {
                     paginaCompleta(cards.Imagem, cards.Nome, cards.Raridade, cards);
                 }
@@ -218,8 +241,77 @@ namespace Figurinha_Copa_2026
 
         }
 
+        //csharp frmListaFigurinhas.cs
+// Descartar com segurança imagens e controles do FlowLayoutPanel
+        void LimparFlow()
+        {
+            if (flpFigu == null) return;
+            // Copia para array para evitar problemas de iteração enquanto disposa
+            var controles = flpFigu.Controls.Cast<Control>().ToArray();
 
-        
+            foreach (var ctrl in controles)
+            {
+                try
+                {
+                    // Procura PictureBox dentro do painel e libera a imagem
+                    var pb = ctrl.Controls.OfType<PictureBox>().FirstOrDefault();
+                    if (pb != null)
+                    {
+                        if (pb.Image != null)
+                        {
+                            try { pb.Image.Dispose(); } catch { }
+                            pb.Image = null;
+                        }
+                        // dispose do PictureBox
+                        try { pb.Dispose(); } catch { }
+                    }
+
+                    // Dispose de demais filhos
+                    var filhos = ctrl.Controls.Cast<Control>().ToArray();
+                    foreach (var f in filhos)
+                    {
+                        try { f.Dispose(); } catch { }
+                    }
+
+                    // Dispose do próprio controle (p. ex. Panel)
+                    try { ctrl.Dispose(); } catch { }
+                }
+                catch
+                {
+                    // Não propagar erro de limpeza, apenas tentar continuar
+                }
+            }
+
+            // Finalmente limpar a coleção e forçar redraw
+            flpFigu.Controls.Clear();
+            flpFigu.Invalidate();
+            System.Windows.Forms.Application.DoEvents();
+        }
+
+
+        // Diagnóstico: escreve no Output do VS sobre o conteúdo do AlbumGeral
+        void DiagnosticoAlbum()
+        {
+            try
+            {
+                System.Diagnostics.Debug.WriteLine("--------- Diagnostico AlbumGeral ---------");
+                System.Diagnostics.Debug.WriteLine($"AlbumGeral.Count = {AlbumGeral.Count}");
+                for (int i = 0; i < AlbumGeral.Count; i++)
+                {
+                    var f = AlbumGeral[i];
+                    bool imgNull = f.Imagem == null;
+                    string size = imgNull ? "-" : $"{f.Imagem.Width}x{f.Imagem.Height}";
+                    System.Diagnostics.Debug.WriteLine($"{i}: Nome='{f.Nome}', Raridade='{f.Raridade}', Status='{f.Status}', ImagemNull={imgNull}, Size={size}, Hash={(f.Imagem != null ? f.Imagem.GetHashCode().ToString() : "-")}");
+                }
+                System.Diagnostics.Debug.WriteLine("------------------------------------------");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("DiagnosticoAlbum erro: " + ex.Message);
+            }
+        }
+
+
         private void btnDesejado_Click(object sender, EventArgs e)
         {
             // Descobre qual botão foi clicado e recupera a figurinha da Tag
