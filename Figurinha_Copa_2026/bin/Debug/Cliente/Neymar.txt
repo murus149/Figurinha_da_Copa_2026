@@ -1,0 +1,3 @@
+Nome da figurinha:System.Windows.Forms.TextBox, Text: Neymar
+Selecão:System.Windows.Forms.TextBox, Text: Brasil
+Salvo em:System.Windows.Forms.TextBox, Text: 
